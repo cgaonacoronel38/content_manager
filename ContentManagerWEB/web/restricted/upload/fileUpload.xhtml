@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Dashboard</title>
+        <h:outputStylesheet name="css/pf-default.css"/>
+    </h:head>
+    <ui:composition  template="/WEB-INF/facelets/template/gdm.xhtml"> 
+        <ui:define name="content-center">
+            <style>
+                .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active{
+                    background: #044687;
+                    border: 1px solid #044687;
+                    color: white;
+                }
+            </style>
+            <h:form style="height: 750px;" id="formContentView">
+                <p:messages autoUpdate="true" />
+
+                <p:toolbar >
+                    <f:facet name="left">
+                        <p:commandButton value="Nuevo contenido" icon="fa fa-plus" actionListener="#{fileUpload.viewModalCreateContent()}" onclick="PF('block').show()" oncomplete="PF('block').hide()">
+                            <p:ajax event="dialogReturn" listener="#{fileUpload.onModalClosed()}" update="@([id$=dtContent])"
+                                    onstart="PF('block').show()" oncomplete="PF('block').hide()"/>
+                        </p:commandButton>
+                    </f:facet>
+                </p:toolbar>
+                <p:spacer height="5px" />
+
+                <p:dataTable id="dtContent"
+                             rowIndexVar="indexVar"
+                             var="de"
+                             value="#{fileUpload.listContent}" 
+                             paginator="true"
+                             rows="10">
+                    <p:column filterBy="#{de.name}" filterMatchMode="contains"> 
+                        <f:facet name="header">
+                            <p:outputLabel value="Contenido" />
+                        </f:facet>
+                        <p:outputLabel value="#{de.name}" />
+                    </p:column>
+
+                    <p:column filterBy="#{de.description}" filterMatchMode="contains"> 
+                        <f:facet name="header">
+                            <p:outputLabel value="Descripcion" />
+                        </f:facet>
+                        <p:outputLabel value="#{de.description}" />
+                    </p:column>
+
+                    <p:column filterBy="#{de.duration}" filterMatchMode="exact">
+                        <f:facet name="header">
+                            <p:outputLabel value="Duracion" />
+                        </f:facet>
+                        <p:outputLabel value="#{de.duration}" />
+                    </p:column>
+
+                    <p:column> 
+                        <f:facet name="header">
+                            <p:outputLabel value="Valido hasta" />
+                        </f:facet>
+                        <p:outputLabel value="#{de.dueDate}" >
+                            <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                        </p:outputLabel>
+                    </p:column>
+
+                    <p:column style="width: 50px; margin: 0px; padding: 0px;">
+                        <f:facet name="header">
+                            <h:outputText styleClass="fa fa-cogs" title="Desactivar contenido"/>
+                        </f:facet>
+                        <p:commandButton title="Desactivar contenido" icon="fa fa-close" actionListener="#{fileUpload.inactiveContent(de.idContent)}" 
+                                         update="@([id$=dtContent])" onclick="PF('block').show()" oncomplete="PF('block').hide()" 
+                                         style="margin: auto; display: block;">
+                            <p:confirm header="Confirmacion" message="Está seguro?" icon="ui-icon-alert" />
+                        </p:commandButton>
+                    </p:column>
+
+                    <p:column style="width: 80px; margin: 0px; padding: 0px;">
+                        <f:facet name="header">
+                            <h:outputText styleClass="fa fa-desktop" title="Terminales relacionadas"/>
+                        </f:facet>
+                        <div style="padding-left: 7px; margin: 0px; display: block;">
+                            <p:commandButton title="Agregar terminales" icon="fa fa-plus" actionListener="#{fileUpload.viewModalCreateContentDevice(de.idContent)}" 
+                                             onclick="PF('block').show()" oncomplete="PF('block').hide()" >
+                                <p:ajax event="dialogReturn" listener="#{fileUpload.onDeviceAdded()}"
+                                    onstart="PF('block').show()" oncomplete="PF('block').hide()"/>
+                            </p:commandButton>
+                            <p:commandButton title="Ver terminales" icon="fa fa-list-ul" actionListener="#{fileUpload.viewModalViewContentDevice(de.idContent)}" 
+                                             onclick="PF('block').show()" oncomplete="PF('block').hide()" />
+                        </div>
+                    </p:column>
+                </p:dataTable>
+
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                    <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:confirmDialog>
+
+                <p:blockUI block="@([id$=formContentView])" widgetVar="block" styleClass="zindex-blockui">
+                    Procesando, favor espere...<br />
+                    <p:graphicImage library="img" name="ajaxloadingbar.gif" styleClass="z-index:90000!important;"/>
+                </p:blockUI>
+            </h:form>
+        </ui:define>
+
+    </ui:composition>    
+</html>
+
