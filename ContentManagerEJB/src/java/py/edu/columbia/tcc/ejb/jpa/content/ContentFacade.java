@@ -71,6 +71,7 @@ public class ContentFacade extends AbstractFacade<Content> {
     
     public String getContentPath(UUID uuid) throws GDMEJBException {
         try {
+            System.out.println("UUID contenido: "+uuid.toString());
             StringBuilder sb = new StringBuilder();
             sb.append("SELECT d.directory ");
             sb.append("  FROM Content d ");

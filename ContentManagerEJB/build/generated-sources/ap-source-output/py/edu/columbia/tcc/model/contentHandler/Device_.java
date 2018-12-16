@@ -17,7 +17,6 @@ public abstract class Device_ {
 	public static volatile SingularAttribute<Device, String> description;
 	public static volatile SingularAttribute<Device, Boolean> active;
 	public static volatile ListAttribute<Device, Playbacks> playbacksList;
-	public static volatile ListAttribute<Device, Audiences> audiencesList;
 	public static volatile SingularAttribute<Device, Integer> idDevice;
 	public static volatile SingularAttribute<Device, UUID> uuid;
 

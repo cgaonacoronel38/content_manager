@@ -16,7 +16,7 @@ public class AudienceEventBean {
     private UUID uuidDevice;
     private UUID uuidContent;
     private UUID uuidEvent;
-    private Date deivceDate;
+    private Date deviceDate;
     private Date registrationDate;
 
     public AudienceEventBean() {
@@ -46,12 +46,12 @@ public class AudienceEventBean {
         this.uuidEvent = uuidEvent;
     }
 
-    public Date getDeivceDate() {
-        return deivceDate;
+    public Date getDeviceDate() {
+        return deviceDate;
     }
 
-    public void setDeivceDate(Date deivceDate) {
-        this.deivceDate = deivceDate;
+    public void setDeviceDate(Date deviceDate) {
+        this.deviceDate = deviceDate;
     }
 
     public Date getRegistrationDate() {
