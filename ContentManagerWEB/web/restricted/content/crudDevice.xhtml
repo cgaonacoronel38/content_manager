@@ -53,7 +53,7 @@
 
                     <p:column filterBy="#{de.deviceDescription}" filterMatchMode="contains">
                         <f:facet name="header">
-                            <p:outputLabel value="Descripcion" />
+                            <p:outputLabel value="Descripción" />
                         </f:facet>
                         <p:outputLabel value="#{de.deviceDescription}" />
                     </p:column>
@@ -67,7 +67,7 @@
 
                     <p:column filterBy="#{de.locationDescription}" filterMatchMode="contains">
                         <f:facet name="header">
-                            <p:outputLabel value="Descripcion" />
+                            <p:outputLabel value="Descripción" />
                         </f:facet>
                         <p:outputLabel value="#{de.locationDescription}" />
                     </p:column>
@@ -90,9 +90,9 @@
 
                     <p:column style="width: 55px;">
                         <f:facet name="header">
-                            <p:outputLabel styleClass="fa fa-globe" title="Geolocalizacion" />
+                            <p:outputLabel styleClass="fa fa-globe" title="í" />
                         </f:facet>
-                        <p:commandButton title="Ubicacion" icon="fa fa-map-marker" actionListener="#{crudDevice.viewMap(de.geolocation, de.locationName)}" 
+                        <p:commandButton title="Ubicación" icon="fa fa-map-marker" actionListener="#{crudDevice.viewMap(de.geolocation, de.locationName)}" 
                                   >
                             <f:setPropertyActionListener value="#{de.geolocation}" target="#{crudDevice.geolocation}" />
                             <f:setPropertyActionListener value="#{de.locationName}" target="#{crudDevice.location}" />
@@ -103,7 +103,7 @@
                         <f:facet name="header">
                             <p:outputLabel styleClass="fa fa-edit" title="Editar" />
                         </f:facet>
-                        <p:commandButton title="Ubicacion" icon="fa fa-edit" actionListener="#{crudDevice.initEditDevice(de.idDevice)}" 
+                        <p:commandButton title="Editar" icon="fa fa-edit" actionListener="#{crudDevice.initEditDevice(de.idDevice)}" 
                                          oncomplete="PF('wvEditDevice').show()" update="@([id$=opEditDevice])">
                             <f:setPropertyActionListener value="#{de.idDevice}" target="#{crudDevice.idDevice}" />
                         </p:commandButton>
@@ -113,7 +113,7 @@
                 <p:gmap id="maplocationprueba" center="#{crudDevice.geolocation}" zoom="16" type="HYBRID" style="width:100%;" model="#{crudDevice.simpleModel}" />
 
                 <p:outputPanel  id="pgGeolocation" >
-                    <p:dialog header="Geolocalizacion"
+                    <p:dialog header="Geolocalización"
                               id="dlgGeolocation"
                               widgetVar="wvGeolocation"
                               modal="true"
@@ -144,7 +144,7 @@
                                 <p:inputText value="#{crudDevice.newDevice.name}" 
                                              style="width: 100%; margin: auto; display: block;"/>
 
-                                <p:outputLabel value="Descripcion" style="width: 40px;" indicateRequired="true"/>
+                                <p:outputLabel value="Descripción" style="width: 40px;" indicateRequired="true"/>
                                 <p:inputTextarea value="#{crudDevice.newDevice.description}" 
                                                  style="width: 100%; margin: auto; display: block;"/>
                             </h:panelGrid>
@@ -163,7 +163,7 @@
                                         <f:facet name="input"><p:inputText value="#{car.name}" style="width:100%" label="Localidad"/></f:facet>
                                     </p:cellEditor>
                                 </p:column>
-                                <p:column headerText="Descripcion" filterBy="#{car.description}" filterMatchMode="contains">
+                                <p:column headerText="Descripción" filterBy="#{car.description}" filterMatchMode="contains">
                                     <p:cellEditor>
                                         <f:facet name="output"><p:outputLabel value="#{car.description}" /></f:facet>
                                         <f:facet name="input"><p:inputText value="#{car.description}" style="width:100%" label="Localidad"/></f:facet>
@@ -207,7 +207,7 @@
                                 <p:inputText value="#{crudDevice.selectedDevice.name}" 
                                              style="width: 100%; margin: auto; display: block;"/>
 
-                                <p:outputLabel value="Descripcion" style="width: 40px;" indicateRequired="true"/>
+                                <p:outputLabel value="Descripción" style="width: 40px;" indicateRequired="true"/>
                                 <p:inputTextarea value="#{crudDevice.selectedDevice.description}" 
                                                  style="width: 100%; margin: auto; display: block;"/>
                             </h:panelGrid>
@@ -226,7 +226,7 @@
                                         <f:facet name="input"><p:inputText value="#{car.name}" style="width:100%" label="Localidad"/></f:facet>
                                     </p:cellEditor>
                                 </p:column>
-                                <p:column headerText="Descripcion" filterBy="#{car.description}" filterMatchMode="contains">
+                                <p:column headerText="Descripción" filterBy="#{car.description}" filterMatchMode="contains">
                                     <p:cellEditor>
                                         <f:facet name="output"><p:outputLabel value="#{car.description}" /></f:facet>
                                         <f:facet name="input"><p:inputText value="#{car.description}" style="width:100%" label="Localidad"/></f:facet>

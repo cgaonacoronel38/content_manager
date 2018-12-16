@@ -5,6 +5,7 @@
  */
 package py.edu.columbia.tcc.ws;
 
+import py.edu.columbia.tcc.jwt.JWTToken;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
@@ -28,6 +29,7 @@ import py.edu.columbia.tcc.ejb.jpa.content.DevicePingFacade;
  * @author tokio
  */
 @Path("/deviceping")
+@JWTToken
 @ManagedBean
 public class WSDevicePing implements Serializable {
     private final Logger log = LoggerFactory.getLogger(WSDevicePing.class);
@@ -63,8 +65,10 @@ public class WSDevicePing implements Serializable {
     
     @GET
     @Path("/prueba")
+    @JWTToken
     @Produces(MediaType.APPLICATION_JSON)
     public DevicePingBean prueba() {
+        System.err.println("accediendo a metodo de prueba de ping");
         DevicePingBean bean = new DevicePingBean();
         try {
             bean.setDeviceDate(new Date());

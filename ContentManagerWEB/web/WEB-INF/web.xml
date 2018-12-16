@@ -4,6 +4,7 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
+    
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -17,7 +18,9 @@
         <session-timeout>
             30
         </session-timeout>
-    </session-config>
+    </session-config>   
+    
+    
     <filter>
         <filter-name>FilterPermits</filter-name>
         <filter-class>py.edu.columbia.tcc.filter.FilterPermits</filter-class>
@@ -52,7 +55,7 @@
         <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
         <init-param>
             <param-name>jersey.config.server.provider.packages</param-name>
-            <param-value>edu.columbia.tcc.ws</param-value>
+            <param-value>edu.columbia.tcc.ws,py.edu.columbia.tcc.jwt</param-value>
         </init-param>
         <init-param>
             <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>

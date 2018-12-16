@@ -14,7 +14,7 @@
             <p:growl id="msgsCP" showDetail="true" autoUpdate="true"/>
             <p:outputPanel>
                 <p:wizard id="wzCreateChartPanel" flowListener="#{createChartPanel.onFlowProcess}">
-                    <p:tab id="personal" title="Nuevo panel de graficos">
+                    <p:tab id="personal" title="Nuevo panel de gráficos">
                         <p:panel header="Propiedades" style="width:100%; height: 400px; margin: 0px; padding: 0px;" >
                             <h:panelGrid columns="3" columnClasses="label, value, label">
                                 <h:outputText value="Título: *" />
@@ -29,7 +29,7 @@
                                 <p:message for="sorTypeFilter" />
 
                                 <p:outputLabel value="Tipo de gráfico: "/>
-                                <p:selectOneRadio id="sorTypeChart" value="#{createChartPanel.selectedTypeChart.idTypeChart}" layout="grid" columns="3" required="true" requiredMessage="Tipo de grafico requerido!">
+                                <p:selectOneRadio id="sorTypeChart" value="#{createChartPanel.selectedTypeChart.idTypeChart}" layout="grid" columns="3" required="true" requiredMessage="Tipo de gráfico requerido!">
                                     <f:selectItems value="#{createChartPanel.listTypeCharts}" var="tc" itemLabel="#{tc.description}" itemValue="#{tc.idTypeChart}"/>
                                 </p:selectOneRadio>
                                 <p:message for="sorTypeChart" />
@@ -62,13 +62,13 @@
 
                                 </h:panelGrid>
                             </h:panelGrid>
-                            <h:panelGrid columns="3" columnClasses="label, value, label">
+<!--                            <h:panelGrid columns="3" columnClasses="label, value, label">
                                 <p:outputLabel value="Tipo zona: "/>
                                 <p:selectOneRadio id="somTypePlace" value="#{createChartPanel.selectedTypePlace.idTypePlace}" layout="grid" columns="3" required="true" requiredMessage="Tipo zona requerida!">
                                     <f:selectItems value="#{createChartPanel.listTypePlaces}" var="tp" itemLabel="#{tp.description}" itemValue="#{tp.idTypePlace}"/>
                                 </p:selectOneRadio>
                                 <p:message for="somTypePlace" />
-                            </h:panelGrid>
+                            </h:panelGrid>-->
                         </p:panel>
                     </p:tab>
 
@@ -152,7 +152,7 @@
                     </p:tab>
 
                     <p:tab id="tabConfirm" title="Confirmar">
-                        <p:panel header="Confirmar datos de grafico" style="width:100%; height: 400px; margin: 0px; padding: 0px;" >
+                        <p:panel header="Confirmar datos de gráfico" style="width:100%; height: 400px; margin: 0px; padding: 0px;" >
                             <p:commandButton value="Confirmar" type="submit" icon="fa fa-plus" actionListener="#{createChartPanel.createChartPanel()}" update="@form" >
                                 <f:setPropertyActionListener value="#{createChartPanel.selectedTypeChart}" target="#{createChartPanel.selectedTypeChart}" />
                                 <f:setPropertyActionListener value="#{createChartPanel.selectedTypeTime}" target="#{createChartPanel.selectedTypeTime}" />
@@ -161,6 +161,8 @@
                                 <f:setPropertyActionListener value="#{createChartPanel.dualModelContents}" target="#{createChartPanel.dualModelContents}" />
                                 <f:setPropertyActionListener value="#{createChartPanel.dualModelLocations}" target="#{createChartPanel.dualModelLocations}" />
                                 <f:setPropertyActionListener value="#{createChartPanel.dualModelCities}" target="#{createChartPanel.dualModelCities}" />
+                                <f:setPropertyActionListener value="#{createChartPanel.fromDate}" target="#{createChartPanel.fromDate}" />
+                                <f:setPropertyActionListener value="#{createChartPanel.toDate}" target="#{createChartPanel.toDate}" />
                             </p:commandButton>
                         </p:panel>
                     </p:tab>

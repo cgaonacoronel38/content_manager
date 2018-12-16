@@ -7,12 +7,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.chart.PieChart;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.validation.ConstraintViolationException;
 import org.primefaces.PrimeFaces;
@@ -39,7 +37,6 @@ import py.edu.columbia.tcc.ejb.jpa.content.AudienceFacade;
 import py.edu.columbia.tcc.ejb.jpa.content.ChartPanelFacade;
 import py.edu.columbia.tcc.ejb.jpa.content.FilterSettingFacade;
 import py.edu.columbia.tcc.ejb.jpa.content.FilteredContentFacade;
-import py.edu.columbia.tcc.exception.GDMEJBException;
 import py.edu.columbia.tcc.model.bean.AudienceBean;
 
 @ManagedBean(name = "dashboardView")
@@ -144,7 +141,7 @@ public class DashboardView implements Serializable {
             ChartPanel panel = new ChartPanel();
             panel.setDashboardID("db" + cpanel.getIdChartPanel().toString());
             panel.setTitle(cpanel.getTitle());
-            panel.setLineChartModel(getChartModel(cpanel.getIdTypeChart().getName(),cpanel.getIdFilterSetting().getIdTypeTime().getIdTypeTime(),cpanel.getIdFilterSetting().getIdFilterSetting()));
+            panel.setLineChartModel(getChartModel(cpanel.getIdTypeChart().getName(), cpanel.getIdFilterSetting().getIdTypeTime().getIdTypeTime(), cpanel.getIdFilterSetting().getIdFilterSetting()));
             panel.setTypeChart(cpanel.getIdTypeChart().getName());
             listChartPanels.add(panel);
         }
@@ -176,7 +173,7 @@ public class DashboardView implements Serializable {
             chartPanelEJB.deleteChartPanel(idChartPanel);
 
             loadChartPanels();
-            Message.info("Operacion exitosa", "El panel ha sido removido exitosamente");
+            Message.info("Operación exitosa", "El panel ha sido removido exitosamente");
         } catch (ConstraintViolationException ex) {
             Logger.getLogger(DashboardView.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
@@ -185,10 +182,10 @@ public class DashboardView implements Serializable {
     }
 
     public Object getChartModel(String typeChart, int typeTime, Integer filterSetting) {
-        System.out.println("Type Chart: "+typeChart);
-         System.out.println("Type time: "+typeTime);
-          System.out.println("Filter Setting: "+filterSetting);
-          
+        System.out.println("Type Chart: " + typeChart);
+        System.out.println("Type time: " + typeTime);
+        System.out.println("Filter Setting: " + filterSetting);
+
         List<ChartDeviceBean> listChartDevices = null;
         List<AudienceBean> audienceList = null;
         switch (typeChart) {
@@ -202,7 +199,7 @@ public class DashboardView implements Serializable {
                     LineChartSeries series1 = new LineChartSeries();
                     series1.setLabel(bean.getDescription());
 
-                    switch(typeTime){
+                    switch (typeTime) {
                         case 1:
                             audienceList = audienceEJB.audienceQuantityDeviceToday(bean.getIdDevice());
                             break;
@@ -210,7 +207,7 @@ public class DashboardView implements Serializable {
                             audienceList = audienceEJB.audienceQuantityDeviceWeek(bean.getIdDevice());
                             break;
                     }
-                    
+
                     if (audienceList != null) {
                         for (AudienceBean audience : audienceList) {
                             series1.set(audience.getReference(), audience.getQuantity());
@@ -228,7 +225,7 @@ public class DashboardView implements Serializable {
                 axis.setTickAngle(-50);
 
                 //http://www.jqplot.com/docs/files/plugins/jqplot-dateAxisRenderer-js.html
-                if(typeTime == 2){
+                if (typeTime == 2) {
                     axis.setTickFormat("%A %d");
                 }
 
@@ -236,13 +233,13 @@ public class DashboardView implements Serializable {
                 return lineModel;
             case "pie":
                 PieChartModel pieModel = new PieChartModel();
-                
+
                 listChartDevices = audienceEJB.getChartDevices(filterSetting);
                 for (ChartDeviceBean bean : listChartDevices) {
                     ChartSeries series = new ChartSeries();
                     series.setLabel(bean.getDescription());
-                    
-                    switch(typeTime){
+
+                    switch (typeTime) {
                         case 1:
                             audienceList = audienceEJB.audienceQuantityDeviceTodayGroup();
                             break;
@@ -250,7 +247,7 @@ public class DashboardView implements Serializable {
                             audienceList = audienceEJB.audienceQuantityDeviceWeekGroup();
                             break;
                     }
-                    
+
                     if (audienceList != null) {
                         for (AudienceBean audience : audienceList) {
                             pieModel.set(audience.getReference(), audience.getQuantity());
@@ -258,7 +255,19 @@ public class DashboardView implements Serializable {
                     }
                 }
 
-                pieModel.setTitle(typeTime == 1 ? "Ultimas 24 hs" : "Ultima semana");
+                String tituloPeriodo;
+                switch (typeTime) {
+                    case 1:
+                        tituloPeriodo = "Ultimas 24 hs";
+                        break;
+                    case 2:
+                        tituloPeriodo = "Ultima semana";
+                        break;
+                    default:
+                        tituloPeriodo = "Personalizado";
+                        break;
+                }
+                pieModel.setTitle(tituloPeriodo);
                 pieModel.setLegendPosition("e");
                 pieModel.setFill(false);
                 pieModel.setShowDataLabels(true);
@@ -268,13 +277,13 @@ public class DashboardView implements Serializable {
 
                 return pieModel;
             case "bar":
-                BarChartModel barModel = new BarChartModel();                
+                BarChartModel barModel = new BarChartModel();
                 listChartDevices = audienceEJB.getChartDevices(filterSetting);
                 for (ChartDeviceBean bean : listChartDevices) {
                     ChartSeries series = new ChartSeries();
                     series.setLabel(bean.getDescription());
-                    
-                    switch(typeTime){
+
+                    switch (typeTime) {
                         case 1:
                             audienceList = audienceEJB.audienceQuantityDeviceToday(bean.getIdDevice());
                             break;
@@ -282,7 +291,7 @@ public class DashboardView implements Serializable {
                             audienceList = audienceEJB.audienceQuantityDeviceWeek(bean.getIdDevice());
                             break;
                     }
-                    
+
                     if (audienceList != null) {
                         for (AudienceBean audience : audienceList) {
                             series.set(audience.getReference(), audience.getQuantity());
@@ -291,7 +300,7 @@ public class DashboardView implements Serializable {
 
                     barModel.addSeries(series);
                 }
-                
+
 //                barModel.setTitle("Bar Chart");
                 barModel.setLegendPosition("ne");
                 barModel.setStacked(true);
@@ -302,8 +311,8 @@ public class DashboardView implements Serializable {
                 DateAxis axisss = new DateAxis("Fecha");
                 axisss.setTickAngle(-50);
                 barModel.getAxes().put(AxisType.X, axisss);
-                
-                if(typeTime == 2){
+
+                if (typeTime == 2) {
                     axisss.setTickFormat("%A %d");
                 }
 

@@ -5,7 +5,6 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:pe="http://primefaces.org/ui/extensions" 
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition  template="/WEB-INF/facelets/template/gdm.xhtml"> 
@@ -30,9 +29,9 @@
                             <p:password value="#{editUser.selectedUser.password}" required="true" label="Contraseña requerida"/>
 
                             <p:outputLabel value="Estado: *" />
-                            <p:selectOneMenu value="#{editUser.selectedUser.userstatus}" effect="fade" >
-                                <f:selectItem itemLabel="ACTIVO" itemValue="ACTIVE"/>
-                                <f:selectItem itemLabel="BLOQUEADO" itemValue="LOCKED"/>
+                            <p:selectOneMenu value="#{editUser.selectedUser.active}" effect="fade" >
+                                <f:selectItem itemLabel="ACTIVO" itemValue="true"/>
+                                <f:selectItem itemLabel="BLOQUEADO" itemValue="false"/>
                             </p:selectOneMenu>
                         </h:panelGrid>
                         <p:panelGrid>

@@ -18,7 +18,7 @@
         <h:form>
             <p:growl id="msgsCP" showDetail="true" autoUpdate="true"/>
             <p:outputPanel>
-                <p:wizard>
+                <p:wizard backLabel="Anterior" nextLabel="Siguiente">
                     <p:tab id="info" title="Información">
                         <p:panel header="Información de contenido">
                             <p:messages />
@@ -36,14 +36,14 @@
                                 <p:outputLabel value="Duración: *" />
                                 <p:inputNumber id="input3" value="#{fileUpload.newContent.duration}" thousandSeparator="." decimalPlaces="0"  title="Duracion en segundos"  maxValue="300" /> 
 
-                                <p:outputLabel value="Valido hasta: *" />
-                                <p:calendar id="mask" value="#{fileUpload.newContent.dueDate}" pattern="dd/MM/yyyy" mask="true" mindate="today" navigator="true" required="true" requiredMessage="Fecha requerida" title="Valido hasta"/>
+                                <p:outputLabel value="Válido hasta: *" />
+                                <p:calendar id="mask" value="#{fileUpload.newContent.dueDate}" pattern="dd/MM/yyyy" mask="true" mindate="today" navigator="true" required="true" requiredMessage="Fecha requerida" title="Válido hasta"/>
                             </h:panelGrid>
                         </p:panel>
                     </p:tab>
 
                     <p:tab id="address" title="Despliegue">
-                        <p:panel header="Address Details">
+                        <p:panel header="Archivo a desplegar">
                             <p:messages />
                             <h:panelGrid columns="1" id="data" style="width: 100%;">
                                 <p:fileUpload fileUploadListener="#{fileUpload.upload}" 
@@ -56,6 +56,9 @@
                                               fileLimitMessage="Solo se permite un archivo por vez"
                                               requiredMessage="Archivo requerido" 
                                               update="@([id$=filerename]) @([id$=btnGenerate])"
+                                              uploadLabel="Subir"
+                                              label="Seleccionar"
+                                              cancelLabel="Cancelar"
                                               style="margin: 5px 0px;width: 100%;" />
                             </h:panelGrid>
                         </p:panel>

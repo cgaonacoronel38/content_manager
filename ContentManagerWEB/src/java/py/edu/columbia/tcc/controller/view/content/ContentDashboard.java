@@ -173,7 +173,7 @@ public class ContentDashboard implements Serializable {
             chartPanelEJB.deleteChartPanel(idChartPanel);
 
             loadChartPanels();
-            Message.info("Operacion exitosa", "El panel ha sido removido exitosamente");
+            Message.info("Operación exitosa", "El panel ha sido removido exitosamente");
         } catch (ConstraintViolationException ex) {
             Logger.getLogger(ContentDashboard.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {

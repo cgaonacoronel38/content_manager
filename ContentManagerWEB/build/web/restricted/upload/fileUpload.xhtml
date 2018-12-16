@@ -47,21 +47,21 @@
 
                     <p:column filterBy="#{de.description}" filterMatchMode="contains"> 
                         <f:facet name="header">
-                            <p:outputLabel value="Descripcion" />
+                            <p:outputLabel value="Descripción" />
                         </f:facet>
                         <p:outputLabel value="#{de.description}" />
                     </p:column>
 
                     <p:column filterBy="#{de.duration}" filterMatchMode="exact">
                         <f:facet name="header">
-                            <p:outputLabel value="Duracion" />
+                            <p:outputLabel value="Duración" />
                         </f:facet>
                         <p:outputLabel value="#{de.duration}" />
                     </p:column>
 
                     <p:column> 
                         <f:facet name="header">
-                            <p:outputLabel value="Valido hasta" />
+                            <p:outputLabel value="Válido hasta" />
                         </f:facet>
                         <p:outputLabel value="#{de.dueDate}" >
                             <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
@@ -75,7 +75,7 @@
                         <p:commandButton title="Desactivar contenido" icon="fa fa-close" actionListener="#{fileUpload.inactiveContent(de.idContent)}" 
                                          update="@([id$=dtContent])" onclick="PF('block').show()" oncomplete="PF('block').hide()" 
                                          style="margin: auto; display: block;">
-                            <p:confirm header="Confirmacion" message="Está seguro?" icon="ui-icon-alert" />
+                            <p:confirm header="Confirmación" message="Está seguro?" icon="ui-icon-alert" />
                         </p:commandButton>
                     </p:column>
 

@@ -21,16 +21,14 @@
             <file>file:/home/tokio/proyectos/tcc/desarrollo/fuentes/content_manager/ContentManagerWEB/src/java/py/edu/columbia/tcc/ws/WSContent.java</file>
         </group>
         <group name="TCC_DESA">
-            <file>file:/home/tokio/proyectos/tcc/desarrollo/fuentes/content_manager/ContentManagerWEB/src/java/py/edu/columbia/tcc/controller/view/content/CrudDevice.java</file>
-            <file>file:/home/tokio/proyectos/tcc/desarrollo/fuentes/content_manager/ContentManagerWEB/src/java/py/edu/columbia/tcc/ws/WSDevicePing.java</file>
-            <file>file:/home/tokio/proyectos/tcc/desarrollo/fuentes/content_manager/ContentManagerWEB/src/java/py/edu/columbia/tcc/ws/WSContent.java</file>
+            <file>file:/home/tokio/proyectos/tcc/desarrollo/fuentes/content_manager/ContentManagerWEB/web/restricted/admin/editUser.xhtml</file>
+            <file>file:/home/tokio/proyectos/tcc/desarrollo/fuentes/content_manager/ContentManagerWEB/src/java/py/edu/columbia/tcc/filter/FilterPermits.java</file>
             <file>file:/home/tokio/proyectos/tcc/desarrollo/fuentes/content_manager/ContentManagerWEB/web/restricted/content/createDevice.xhtml</file>
-            <file>file:/home/tokio/proyectos/tcc/desarrollo/fuentes/content_manager/ContentManagerWEB/web/restricted/dashboard/deviceDashboard.xhtml</file>
-            <file>file:/home/tokio/proyectos/tcc/desarrollo/fuentes/content_manager/ContentManagerWEB/src/java/py/edu/columbia/tcc/controller/view/content/DashboardDeviceStatus.java</file>
+            <file>file:/home/tokio/proyectos/tcc/desarrollo/fuentes/content_manager/ContentManagerWEB/web/restricted/dashboard/createChartPanel.xhtml</file>
+            <file>file:/home/tokio/proyectos/tcc/desarrollo/fuentes/content_manager/ContentManagerWEB/web/restricted/admin/accessManagement.xhtml</file>
             <file>file:/home/tokio/proyectos/tcc/desarrollo/fuentes/content_manager/ContentManagerWEB/web/restricted/content/crudDevice.xhtml</file>
-            <file>file:/home/tokio/proyectos/tcc/desarrollo/fuentes/content_manager/ContentManagerWEB/src/java/py/edu/columbia/tcc/controller/bean/ChartPanel.java</file>
-            <file>file:/home/tokio/proyectos/tcc/desarrollo/fuentes/content_manager/ContentManagerWEB/web/restricted/dashboard/deviceStatus.xhtml</file>
-            <file>file:/home/tokio/proyectos/tcc/desarrollo/fuentes/content_manager/ContentManagerWEB/src/java/py/edu/columbia/tcc/controller/view/content/DeviceDashboard.java</file>
+            <file>file:/home/tokio/proyectos/tcc/desarrollo/fuentes/content_manager/ContentManagerWEB/src/java/py/edu/columbia/tcc/controller/view/content/CreateChartPanel.java</file>
+            <file>file:/home/tokio/proyectos/tcc/desarrollo/fuentes/content_manager/ContentManagerWEB/web/WEB-INF/web.xml</file>
         </group>
     </open-files>
 </project-private>

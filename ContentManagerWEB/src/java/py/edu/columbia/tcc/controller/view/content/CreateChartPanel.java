@@ -386,6 +386,14 @@ public class CreateChartPanel implements Serializable {
 
     public void createChartPanel() {
         try {
+            
+            System.out.println("Content to dispay: "+contentToDisplay);
+            if (contentToDisplay.equals("1")) {
+                selectedTypePlace = new TypePlace(1);
+            } else {
+                selectedTypePlace = new TypePlace(2);
+            }
+            
             FilterSetting filterSetting = new FilterSetting();
             filterSetting.setIdTypeTime(selectedTypeTime);
             filterSetting.setIdTypePlace(selectedTypePlace);
@@ -393,6 +401,8 @@ public class CreateChartPanel implements Serializable {
             filterSetting.setAllContents(!filterContent);
             filterSetting.setAllDevices(true);
             filterSetting.setAllPlaces(!filterTipeZone);
+            filterSetting.setFromDate(fromDate);
+            filterSetting.setToDate(toDate);
 
             newChartPanel.setIdFilterSetting(filterSetting);
             newChartPanel.setColumnOrder(1);

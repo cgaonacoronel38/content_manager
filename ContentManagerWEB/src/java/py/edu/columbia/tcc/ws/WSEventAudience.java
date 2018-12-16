@@ -57,7 +57,7 @@ public class WSEventAudience implements Serializable {
         WSRespondeStatus responseStatus = WSRespondeStatus.REGISTER_ERROR;
         try {
             AudienceEvent audienceEvent = new AudienceEvent();
-            audienceEvent.setDeviceDate(audienceEventBean.getDeivceDate());
+            audienceEvent.setDeviceDate(audienceEventBean.getDeviceDate());
             audienceEvent.setIdDevice(deviceEJB.getDeviceIdByUUID(audienceEventBean.getUuidDevice()));
             audienceEvent.setIdContent(contentEJB.getContentIdByUUID(audienceEventBean.getUuidContent()));
             audienceEvent.setIdEvent(eventEJB.getEventIdByUUID(audienceEventBean.getUuidEvent()));
@@ -74,6 +74,27 @@ public class WSEventAudience implements Serializable {
             log.error("Error al registrar evento de contenido!!: " + e.getMessage());
             log.error("Error al registrar evento de contenido: ",e);
             return WSUtil.getResponse(500, responseStatus.getStatusCode(), responseStatus.getStatusDescription());
+        } 
+    }
+    
+    @GET
+    @Path("/prueba")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public AudienceEventBean prueba() {
+        try {
+            AudienceEventBean bean = new AudienceEventBean();
+            bean.setDeviceDate(new Date());
+            bean.setRegistrationDate(new Date());
+            bean.setUuidContent(UUID.fromString("aabda5e6-8b56-400c-a474-040961a2a455"));
+            bean.setUuidDevice(UUID.fromString("d8f6b33e-c893-4ac5-97da-a0936e6323d7"));
+            bean.setUuidEvent(UUID.fromString("c8c84a5e-5180-4fdf-81aa-e0984022e0a9"));
+            
+            return bean;
+        } catch (Exception e) {
+            log.error("Error al registrar evento de contenido!!: " + e.getMessage());
+            log.error("Error al registrar evento de contenido: ",e);
+            return null;
         } 
     }
 }

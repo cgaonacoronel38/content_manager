@@ -373,12 +373,12 @@ public class CrudDevice implements Serializable {
         try {
             Integer updates = deviceEJB.updateStatus(idDevice, status);
             if(updates > 0){
-                MsgUtil.addMessageWithoutKey(FacesMessage.SEVERITY_INFO, "Operacion exitosa! ", status == true ? "Terminal activada exitosamente!" : "Terminal desactivada exitosamente!");
+                MsgUtil.addMessageWithoutKey(FacesMessage.SEVERITY_INFO, "Operación exitosa! ", status == true ? "Terminal activada exitosamente!" : "Terminal desactivada exitosamente!");
             } else {
-                MsgUtil.addMessageWithoutKey(FacesMessage.SEVERITY_WARN, "Error en operacion", "No se ha podido actualizar la terminal");
+                MsgUtil.addMessageWithoutKey(FacesMessage.SEVERITY_WARN, "Error en operación", "No se ha podido actualizar la terminal");
             }
         } catch (GDMEJBException ex) {
-            MsgUtil.addMessageWithoutKey(FacesMessage.SEVERITY_WARN, "Error en la operacion", "No se ha podido actualizar la terminal");
+            MsgUtil.addMessageWithoutKey(FacesMessage.SEVERITY_WARN, "Error en la operación", "No se ha podido actualizar la terminal");
             java.util.logging.Logger.getLogger(CrudDevice.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -410,7 +410,7 @@ public class CrudDevice implements Serializable {
         try {
             Location locationEdited = ((Location) event.getObject());
             locationEJB.edit(locationEdited);
-            MsgUtil.addMessageWithoutKey(FacesMessage.SEVERITY_INFO, "Edicion exitosa", "Localidad editada exitosamente!");
+            MsgUtil.addMessageWithoutKey(FacesMessage.SEVERITY_INFO, "Edición exitosa", "Localidad editada exitosamente!");
         } catch (Exception ex) {
             java.util.logging.Logger.getLogger(CrudDevice.class.getName()).log(Level.SEVERE, null, ex);
             MsgUtil.addMessageWithoutKey(FacesMessage.SEVERITY_WARN, "Atención!", "Error al editar localidad");
@@ -419,7 +419,7 @@ public class CrudDevice implements Serializable {
     }
      
     public void onRowCancel(RowEditEvent event) {
-        MsgUtil.addMessageWithoutKey(FacesMessage.SEVERITY_WARN, "Atención!", "Edicion cancelada");
+        MsgUtil.addMessageWithoutKey(FacesMessage.SEVERITY_WARN, "Atención!", "Edición cancelada");
     }
     
     public void viewMap(String _geolocation, String _location) {
@@ -430,7 +430,7 @@ public class CrudDevice implements Serializable {
         options.put("width", 600);
         options.put("height", 400);
         options.put("modal", true);
-        options.put("title", "Información del panel de graficos");
+        options.put("title", "Información del panel de gráficos");
         options.put("contentWidth", "100%");
         options.put("contentHeight", "100%");
         PrimeFaces.current().dialog().openDynamic("createDevice", options, null);

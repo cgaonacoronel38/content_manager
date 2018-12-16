@@ -39,7 +39,7 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="Descripcion terminal" />
+                                <h:outputText value="Descripción terminal" />
                             </f:facet>
                             <h:outputText value="#{pl.deviceDescription}" />
                         </p:column>
@@ -53,7 +53,7 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="Descripcion localidad" />
+                                <h:outputText value="Descripción localidad" />
                             </f:facet>
                             <h:outputText value="#{pl.locationDescription}" />
                         </p:column>
@@ -72,7 +72,7 @@
                             <p:commandButton title="Desactivar contenido" icon="fa fa-close" actionListener="#{viewContentDevice.inactiveDeviceContent(pl.idDevice)}" 
                                              update="@([id$=dtDeviceContent]) @([id$=msgsCP])" onclick="PF('block').show()" oncomplete="PF('block').hide()" 
                                              style="margin: auto; display: block;">
-                                <p:confirm header="Confirmacion" message="Está seguro?" icon="ui-icon-alert" />
+                                <p:confirm header="Confirmación" message="¿Está seguro?" icon="ui-icon-alert" />
                             </p:commandButton>
                         </p:column>
                     </p:dataTable>

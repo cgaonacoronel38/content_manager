@@ -209,10 +209,10 @@ public class FileUpload implements Serializable {
             contentEJB.inactiveContent(idContent);
             deviceContentEJB.inactiveAllContentDevices(idContent);
             updateContentList();
-            Message.info("Operacion exitosa", "El contenido ha sido desactivado");
+            Message.info("Operación exitosa", "El contenido ha sido desactivado");
         } catch (GDMEJBException ex) {
             java.util.logging.Logger.getLogger(FileUpload.class.getName()).log(Level.SEVERE, null, ex);
-            Message.error("Error en operacion", "El contenido no ha podido ser deshabilitado");
+            Message.error("Error en operación", "El contenido no ha podido ser desactivado");
         }
     }
 

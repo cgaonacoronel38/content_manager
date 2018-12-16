@@ -72,7 +72,7 @@
                             <p:ajax event="reorder" listener="#{deviceDashboard.handleReorder}" update="@([id$=msgs])  @([id$=board])" />
 
                             <c:forEach var="dash" items="#{deviceDashboard.listChartPanels}" >
-                                <p:panel id="#{dash.dashboardID}" header="#{dash.title} | Grafico de #{dash.typeAudienceChart}" footer="Grafico de #{dash.typeAudienceChart}" toggleable="true">
+                                <p:panel id="#{dash.dashboardID}" header="#{dash.title} | Gráfico de #{dash.typeAudienceChart}" footer="Gráfico de #{dash.typeAudienceChart}" toggleable="true">
                                     <f:facet name="actions">
                                         <p:commandLink id="cm#{dash.dashboardID}" 
                                                        styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default" title="Eliminar" 

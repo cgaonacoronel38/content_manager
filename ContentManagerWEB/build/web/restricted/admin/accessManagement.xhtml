@@ -31,27 +31,8 @@
                                     <p:message for="repeated_password" />
 
                                     <p:outputLabel value="Nombre"/>
-                                    <p:inputText value="#{accessManagement.newUser.firstName}" id="firstName"/>
+                                    <p:inputText value="#{accessManagement.newUser.name}" id="firstName"/>
                                     <p:message for="firstName" />
-
-                                    <p:outputLabel value="Apellido"/>
-                                    <p:inputText value="#{accessManagement.newUser.lastName}" id="lastName" />
-                                    <p:message for="lastName" />
-
-                                    <p:outputLabel value="Sexo"/>
-                                    <p:selectOneMenu value="#{accessManagement.newUser.gender}" id="gender">
-                                        <f:selectItem itemLabel="FEMENINO" itemValue="1" />
-                                        <f:selectItem itemLabel="MASCULINO" itemValue="2" />
-                                    </p:selectOneMenu>
-                                    <p:message for="gender" />
-
-                                    <p:outputLabel value="Email"/>
-                                    <p:inputText value="#{accessManagement.newUser.email}" id="email" />
-                                    <p:message for="email" />
-
-                                    <p:outputLabel value="Telefono"/>
-                                    <p:inputText value="#{accessManagement.newUser.phone}" id="phone" />
-                                    <p:message for="phone" />
 
                                     <p:outputLabel value="Role"/>
                                     <p:selectOneMenu id="somLocation" 
@@ -80,27 +61,10 @@
                                     <p:column headerText="Usuario" filterBy="#{pe.userName}" filterMatchMode="contains">
                                         <h:outputText value="#{pe.userName}" />
                                     </p:column>
-                                    <p:column headerText="Nombre" filterBy="#{pe.firstName}" filterMatchMode="contains">
+                                    <p:column headerText="Nombre y apellido" filterBy="#{pe.name}" filterMatchMode="contains">
                                         <p:cellEditor>
-                                            <f:facet name="output"><h:outputText value="#{pe.firstName}" /></f:facet>
-                                            <f:facet name="input"><p:inputText value="#{pe.firstName}" style="width:100%" label="Nombre"/></f:facet>
-                                        </p:cellEditor>
-                                    </p:column>
-                                    <p:column headerText="Apellido" filterBy="#{car.id}" filterMatchMode="contains">
-                                        <p:cellEditor>
-                                            <f:facet name="output"><h:outputText value="#{pe.lastName}" /></f:facet>
-                                            <f:facet name="input"><p:inputText value="#{pe.lastName}" style="width:100%" label="Apellido"/></f:facet>
-                                        </p:cellEditor>
-                                    </p:column>
-                                    <p:column headerText="Sexo">
-                                        <p:cellEditor>
-                                            <f:facet name="output"><h:outputText value="#{pe.gender}" /></f:facet>
-                                            <f:facet name="input">
-                                                <p:selectOneMenu value="#{pe.gender}">
-                                                    <f:selectItem itemLabel="FEMENINO" itemValue="1" />
-                                                    <f:selectItem itemLabel="MASCULINO" itemValue="2" />
-                                                </p:selectOneMenu>
-                                            </f:facet>
+                                            <f:facet name="output"><h:outputText value="#{pe.name}" /></f:facet>
+                                            <f:facet name="input"><p:inputText value="#{pe.name}" style="width:100%" label="Nombre"/></f:facet>
                                         </p:cellEditor>
                                     </p:column>
                                     <p:column headerText="Role">
@@ -111,18 +75,6 @@
                                                     <f:selectItems value="#{accessManagement.listRoles}" var="role" itemLabel="#{role.description}" itemValue="#{role.idRole}" />
                                                 </p:selectOneMenu>
                                             </f:facet>
-                                        </p:cellEditor>
-                                    </p:column>
-                                    <p:column headerText="Email">
-                                        <p:cellEditor>
-                                            <f:facet name="output"><h:outputText value="#{pe.email}" /></f:facet>
-                                            <f:facet name="input"><p:inputText value="#{pe.email}" style="width:100%" label="Email"/></f:facet>
-                                        </p:cellEditor>
-                                    </p:column>
-                                    <p:column headerText="Telefono">
-                                        <p:cellEditor>
-                                            <f:facet name="output"><h:outputText value="#{pe.phone}" /></f:facet>
-                                            <f:facet name="input"><p:inputText value="#{pe.phone}" style="width:100%" label="Telefono"/></f:facet>
                                         </p:cellEditor>
                                     </p:column>
                                     <p:column headerText="Activo">
