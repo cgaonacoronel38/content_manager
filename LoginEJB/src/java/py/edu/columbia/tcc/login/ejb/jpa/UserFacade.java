@@ -121,9 +121,12 @@ public class UserFacade extends AbstractFacade<User> {
             pwdEncript = AESSymetricCrypto.encriptInSHA512HEX2(newPassword);
 
             StringBuilder sql = new StringBuilder();
-            sql.append("UPDATE system_handler.user SET password = ?1, ");
+            sql.append("UPDATE system_handler.user SET password = ?1 ");
             sql.append(" WHERE user_name = ?2");
 
+            System.out.println("Query change password: "+sql.toString());
+            System.out.println(""+pwdEncript);
+            System.out.println(""+usernameToChange);
             Query q = getEntityManager().createNativeQuery(sql.toString());
             q.setParameter(1, pwdEncript);
             q.setParameter(2, usernameToChange);
