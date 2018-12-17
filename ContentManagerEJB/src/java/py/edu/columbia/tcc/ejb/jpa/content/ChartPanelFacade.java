@@ -39,6 +39,22 @@ public class ChartPanelFacade extends AbstractFacade<ChartPanel> {
             throw new GDMEJBException("Error al eliminar chart panel.", ex);
         }
     }
+    
+    public List<ChartPanel> getUserChartPanel(Integer idUser) throws GDMEJBException {
+        try {
+            System.out.println("usuario: "+idUser);
+            StringBuilder sb = new StringBuilder();
+            sb.append("SELECT cp from ChartPanel cp WHERE cp.idUser = ?1 ");
+
+            Query q = getEntityManager().createQuery(sb.toString());
+            q.setParameter(1, Long.valueOf(idUser));
+
+            return q.getResultList();
+        } catch (Exception ex) {
+            System.err.println(ex);
+            throw new GDMEJBException("Error al eliminar chart panel.", ex);
+        }
+    }
 
     public List<AudienceDataChart> getAudienceDataChart(Integer idChartPanel) throws GDMEJBException {
         List<AudienceDataChart> result = null;
