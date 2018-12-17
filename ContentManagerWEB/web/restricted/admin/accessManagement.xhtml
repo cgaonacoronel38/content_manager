@@ -9,6 +9,20 @@
 
     <ui:composition  template="/WEB-INF/facelets/template/gdm.xhtml"> 
         <ui:define name="content-center">
+            <h:head>
+                <h:outputStylesheet name="css/pf-default.css"/>
+                <style>
+                    .inputTextWidth {
+                        width: 280px;
+                    }
+
+                    .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active{
+                        background: #044687;
+                        border: 1px solid #044687;
+                        color: white;
+                    }
+                </style>
+            </h:head>
             <h:form id="form" >
                 <p:growl id="growl" showDetail="true" autoUpdate="true" />
                 <p:tabView>

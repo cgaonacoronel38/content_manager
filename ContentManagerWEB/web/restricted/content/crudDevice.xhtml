@@ -93,7 +93,7 @@
                             <p:outputLabel styleClass="fa fa-globe" title="í" />
                         </f:facet>
                         <p:commandButton title="Ubicación" icon="fa fa-map-marker" actionListener="#{crudDevice.viewMap(de.geolocation, de.locationName)}" 
-                                  >
+                                         >
                             <f:setPropertyActionListener value="#{de.geolocation}" target="#{crudDevice.geolocation}" />
                             <f:setPropertyActionListener value="#{de.locationName}" target="#{crudDevice.location}" />
                         </p:commandButton>
@@ -176,8 +176,12 @@
                                     <p:rowEditor styleClass="button_blue" />
                                 </p:column>
                                 <f:facet name="footer">
-                                    <p:commandButton title="prueba" value="Nueva localidad" icon="fa fa-plus" 
-                                                     oncomplete="PF('wvprueba').show()" >
+                                    <!--                                    <p:commandButton title="prueba" value="Nueva localidad" icon="fa fa-plus" 
+                                                                                         oncomplete="PF('wvprueba').show()" >
+                                                                        </p:commandButton>-->
+                                    <p:commandButton value="Nueva localidad" icon="fa fa-plus" actionListener="#{crudDevice.viewModalCreateLocation()}" onclick="PF('block').show()" oncomplete="PF('block').hide()">
+                                        <p:ajax event="dialogReturn" listener="#{crudDevice.onModalCLClosed()}" update="@([id$=msgs])  @([id$=board])"
+                                                onstart="PF('block').show()" oncomplete="PF('block').hide()"/>
                                     </p:commandButton>
                                 </f:facet>
                             </p:dataTable>
@@ -239,8 +243,9 @@
                                     <p:rowEditor styleClass="button_blue" />
                                 </p:column>
                                 <f:facet name="footer">
-                                    <p:commandButton title="prueba" value="Nueva localidad" icon="fa fa-plus" 
-                                                     oncomplete="PF('wvprueba').show()" >
+                                    <p:commandButton value="Nueva localidad" icon="fa fa-plus" actionListener="#{crudDevice.viewModalCreateLocation()}" onclick="PF('block').show()" oncomplete="PF('block').hide()">
+                                        <p:ajax event="dialogReturn" listener="#{crudDevice.onModalCLClosed()}" update="@([id$=msgs])  @([id$=radioEditDT])"
+                                                onstart="PF('block').show()" oncomplete="PF('block').hide()"/>
                                     </p:commandButton>
                                 </f:facet>
                             </p:dataTable>

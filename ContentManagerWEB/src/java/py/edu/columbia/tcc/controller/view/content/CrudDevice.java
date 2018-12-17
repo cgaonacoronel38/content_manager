@@ -32,6 +32,7 @@ import org.primefaces.model.map.MapModel;
 import org.primefaces.model.map.Marker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import py.edu.columbia.tcc.controller.view.utils.Message;
 import py.edu.columbia.tcc.ejb.jpa.bean.ContentDeviceBean;
 
 @ManagedBean
@@ -434,5 +435,20 @@ public class CrudDevice implements Serializable {
         options.put("contentWidth", "100%");
         options.put("contentHeight", "100%");
         PrimeFaces.current().dialog().openDynamic("createDevice", options, null);
+    }
+    
+    public void viewModalCreateLocation(){
+        Map<String, Object> options = new HashMap<>();
+        options.put("width", 420);
+        options.put("height", 430);
+        options.put("modal", true);
+        options.put("contentWidth", "100%");
+        options.put("contentHeight", "100%");
+        PrimeFaces.current().dialog().openDynamic("createLocation", options, null);
+    }
+    
+    public void onModalCLClosed(){
+        updLocationList();
+        Message.info("Registro exitoso", "La localidad ha sido registrada exitosamente");
     }
 }

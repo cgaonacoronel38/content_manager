@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <h:outputStylesheet name="css/pf-default.css"/>
+        <style>
+            .inputTextWidth {
+                width: 280px;
+            }
+            
+            .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active{
+                    background: #044687;
+                    border: 1px solid #044687;
+                    color: white;
+            }
+        </style>
+    </h:head>
+    <h:body style="padding: 0px; margin: 0px;">
+        <h:form title="Registro de localidad" style="padding: 0px; margin: 0px;">
+            <p:growl id="msgsCP" showDetail="true" autoUpdate="true"/>
+            <p:outputPanel id="opCreateLocation" style="padding: 10px; margin: auto;">
+
+                <p:messages id="msg" />
+                <h:panelGrid columns="2">
+                    <p:outputLabel value="Nombre: " indicateRequired="true" />
+                    <p:inputText value="#{createLocation.newLocation.name}" 
+                                 required="true" 
+                                 requiredMessage="Nombre requerido" 
+                                 title="Nombre" 
+                                 styleClass="inputTextWidth" />
+
+                    <p:outputLabel value="Descripción: *" />
+                    <p:inputTextarea value="#{createLocation.newLocation.description}" 
+                                     rows="6" 
+                                     cols="33" 
+                                     required="true" 
+                                     requiredMessage="Descripción requerida" 
+                                     title="Descripcion" 
+                                     styleClass="inputTextWidth"/>
+
+                    <p:outputLabel value="País: *" />
+                    <p:selectOneMenu value="#{createLocation.selectedCountry.idCountry}" required="true" requiredMessage="País requerido">
+                        <f:selectItems value="#{createLocation.listcountries}" var="country" itemLabel="#{country.description}" itemValue="#{country.idCountry}" />
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="Ciudad: *" />
+                    <p:selectOneMenu value="#{createLocation.selectedCity.idCity}" required="true" requiredMessage="Ciudad requerida">
+                        <f:selectItems value="#{createLocation.listCities}" var="city" itemLabel="#{city.description}" itemValue="#{city.idCity}" />
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="Latitud: *" />
+                    <p:inputText id="input3" value="#{createLocation.newLocation.latitude}" 
+                                   title="Latitud"/> 
+
+                    <p:outputLabel value="Longitud *" />
+                    <p:inputText id="input4" value="#{createLocation.newLocation.longitude}" 
+                                   title="Longitud"/> 
+                </h:panelGrid>
+                <p:commandButton id="btnCreateLocation" value="Aceptar" style="margin: auto; display: block;"
+                                     actionListener="#{createLocation.createLocation()}" update="@([id$=msg]) @([id$=opCreateLocation])">
+                    </p:commandButton>
+            </p:outputPanel>
+        </h:form>
+    </h:body>
+</html>
+
