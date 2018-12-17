@@ -34,6 +34,7 @@ import org.primefaces.model.chart.LineChartModel;
 import org.primefaces.model.chart.LineChartSeries;
 import org.primefaces.model.chart.PieChartModel;
 import py.edu.columbia.tcc.controller.bean.ChartPanel;
+import py.edu.columbia.tcc.controller.session.GDMSession;
 import py.edu.columbia.tcc.controller.view.utils.Message;
 import py.edu.columbia.tcc.ejb.jpa.bean.AudienceDataChart;
 import py.edu.columbia.tcc.ejb.jpa.content.AudienceDeviceFacade;
@@ -45,6 +46,9 @@ import py.edu.columbia.tcc.exception.GDMEJBException;
 @ManagedBean(name = "deviceDashboard")
 @ViewScoped
 public class DeviceDashboard implements Serializable {
+
+    @Inject
+    private GDMSession gdmSession;
 
     @Inject
     private ChartPanelFacade chartPanelEJB;
@@ -170,22 +174,30 @@ public class DeviceDashboard implements Serializable {
     }
 
     public void loadChartPanels() {
-        List<ChartPanel> list = new ArrayList<>();
-        List<py.edu.columbia.tcc.model.chartData.ChartPanel> listPanel = chartPanelEJB.findAll();
-        for (py.edu.columbia.tcc.model.chartData.ChartPanel cpanel : listPanel) {
-            ChartPanel panel = new ChartPanel();
-            panel.setDashboardID("db" + cpanel.getIdChartPanel().toString());
-            panel.setTitle(cpanel.getTitle());
-            panel.setTypeChart(cpanel.getIdTypeChart().getName());
-            panel.setIdChartPanel(cpanel.getIdChartPanel());
-            panel.setTypeAudienceChart(cpanel.getIdFilterSetting().getIdTypeFilter().getDescription());
-            panel.setLineChartModel(getChartModel(panel.getTypeChart(), panel.getIdChartPanel(), true));//, cpanel.getIdFilterSetting().getIdTypeTime().getIdTypeTime();
+        try {
+            List<ChartPanel> list = new ArrayList<>();
+            System.out.println("Usuario: " + gdmSession.getUser().getIdUser());
+            List<py.edu.columbia.tcc.model.chartData.ChartPanel> listPanel = chartPanelEJB.getUserChartPanel(gdmSession.getUser().getIdUser());
+            if (listPanel != null) {
+                System.out.println("Longitud de lista: " + listPanel.size());
+                for (py.edu.columbia.tcc.model.chartData.ChartPanel cpanel : listPanel) {
+                    ChartPanel panel = new ChartPanel();
+                    panel.setDashboardID("db" + cpanel.getIdChartPanel().toString());
+                    panel.setTitle(cpanel.getTitle());
+                    panel.setTypeChart(cpanel.getIdTypeChart().getName());
+                    panel.setIdChartPanel(cpanel.getIdChartPanel());
+                    panel.setTypeAudienceChart(cpanel.getIdFilterSetting().getIdTypeFilter().getDescription());
+                    panel.setLineChartModel(getChartModel(panel.getTypeChart(), panel.getIdChartPanel(), true));//, cpanel.getIdFilterSetting().getIdTypeTime().getIdTypeTime();
 
-            list.add(panel);
+                    list.add(panel);
+                }
+            }
+
+            listChartPanels = list;
+            addChartPanelOnDashboard();
+        } catch (GDMEJBException ex) {
+            Logger.getLogger(DeviceDashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        listChartPanels = list;
-        addChartPanelOnDashboard();
     }
 
     private void addChartPanelOnDashboard() {
@@ -239,7 +251,7 @@ public class DeviceDashboard implements Serializable {
                 }
             }
         }
-        
+
     }
 
     public void deleteChart(String chartID) {
